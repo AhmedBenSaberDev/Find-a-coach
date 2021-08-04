@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 
 import PageNotFound from '../pages/PageNotFound';
 import CoachesList from '../pages/coaches/CoachesList';
+import CoachDetail from '../pages/coaches/CoachDetail';
+import CoachRegistration from '../pages/coaches/CoachRegistration';
+import ContactCoach from '../pages/requests/ContactCoach';
 
 Vue.use(VueRouter)
 
@@ -13,16 +16,18 @@ const routes = [
   },
   {
     path:'/coaches',
-    component:CoachesList
+    component:CoachesList,
+    name:'coaches'
   },
   {
     path:'/coaches/:id',
-    component:null,
-    children:[{path:'contact',component:null}]
+    props:true,
+    component:CoachDetail,
+    children:[{path:'contact',component:ContactCoach}]
   },
   {
     path:'/register',
-    component:null
+    component:CoachRegistration
   },
   {
     path:'/requests',
@@ -30,7 +35,8 @@ const routes = [
   },
   {
     path:'/:notfound(.*)',
-    component:PageNotFound
+    component:PageNotFound,
+    name:'Page'
   }
 ]
 
